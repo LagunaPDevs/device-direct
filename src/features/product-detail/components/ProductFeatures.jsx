@@ -1,5 +1,7 @@
 import { Box } from "@mui/material";
+
 import { ProductFeatureItem } from "./ProductFeatureItem";
+import { ProductVariantsSelector } from "./ProductVariantsSelector";
 
 export function ProductFeatures({ product }) {
   const {
@@ -37,6 +39,8 @@ export function ProductFeatures({ product }) {
       <ProductFeatureItem title="Secondary Camera" value={secondaryCamera} />
       <ProductFeatureItem title="Dimentions" value={dimentions} />
       <ProductFeatureItem title="Weight" value={weight} />
+
+      <ProductVariantsSelector />
     </Box>
   );
 }
