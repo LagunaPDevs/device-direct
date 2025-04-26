@@ -1,5 +1,7 @@
 import { Box } from "@mui/material";
 
+import { Breadcrumbs } from "@/components/@extended/Breadcrumbs";
+
 export function ProductListPage() {
-  return <Box>Product list page</Box>;
+  return <Box><Breadcrumbs /></Box>;
 }
