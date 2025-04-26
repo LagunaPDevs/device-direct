@@ -29,7 +29,13 @@ Make sure you have Node.js and npm (or yarn) installed on your system. You can d
 
 ## Running the Application
 
-Once the dependencies are installed, you can start the development server:
+Create a `.env` at root level including the code provided in the `.env.example` file:
+
+```bash
+VITE_API_URL=https://itx-frontend-test.onrender.com/
+```
+
+Once the dependencies are installed, and the `.env` is created you can start the development server:
 
 ```bash
 npm run start
