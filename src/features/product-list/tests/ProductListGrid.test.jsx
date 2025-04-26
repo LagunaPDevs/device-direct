@@ -1,4 +1,4 @@
-import { screen, render } from "@testing-library/react"
+import { screen, render } from "@/utils/testing/testing-library-utils"
 
 import ProductListGrid from "@/features/product-list/components/ProductListGrid"
 

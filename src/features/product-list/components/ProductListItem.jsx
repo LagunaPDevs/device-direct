@@ -1,4 +1,6 @@
-import { Box, Grid, Stack, Card, Typography } from "@mui/material";
+import { useNavigate } from "react-router";
+
+import { Box, Grid, Stack, Card, Typography, Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 import { HandledImage } from "@/components/HandledImage";
@@ -17,7 +19,6 @@ const AnimatedCard = styled(Card)(({ theme }) => ({
 }));
 
 export function ProductListItem({ product }) {
-  
   if (!product) {
     return (
       <ProductItemWrapper>
@@ -26,14 +27,17 @@ export function ProductListItem({ product }) {
     );
   }
 
+  const navigate = useNavigate();
   const { id, brand, model, price, imgUrl } = product;
 
   return (
-    <ProductItemWrapper >
+    <ProductItemWrapper>
       <Box
-      key={id}
+        key={id}
+        component={Button}
         sx={{ display: "flex", alignItems: "center", gap: 2 }}
         aria-label="Product Item"
+        onClick={()=> navigate(`/product-detail/${id}`)}
       >
         <HandledImage src={imgUrl} />
         <Box>
@@ -52,7 +56,7 @@ export function ProductListItem({ product }) {
   );
 }
 
-function ProductItemWrapper({  children }) {
+function ProductItemWrapper({ children }) {
   return (
     <Grid size={{ xs: 12, sm: 6, md: 4 }}>
       <Stack

@@ -17,7 +17,7 @@ export const MainRoutes = {
       element: <ProductList />,
     },
     {
-      path: "product-detail",
+      path: "product-detail/:id",
       element: <ProductDetail />,
     },
   ],
