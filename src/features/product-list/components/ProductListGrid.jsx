@@ -5,6 +5,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 import { ProductListItem } from "./ProductListItem";
+import { NoItemsFound } from "./NoItemsFound";
 
 export default function ProductListGrid({ products }) {
   if (!products) return null;
@@ -32,6 +33,7 @@ export default function ProductListGrid({ products }) {
           {products.map((item, index) => (
             <ProductListItem key={index} product={item} />
           ))}
+          {products.length === 0 && <NoItemsFound />}
         </Grid>
       </Container>
     </Box>

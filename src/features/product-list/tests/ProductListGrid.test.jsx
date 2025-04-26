@@ -23,5 +23,14 @@ describe("renders product list", ()=> {
 
         expect(productListEl).not.toBeInTheDocument();
         expect(productItemsEl).toHaveLength(0);
+    });
+
+    test("renders empty list component if list is empty", ()=>{
+        render(<ProductListGrid products={[]} />);
+        const productListEl = screen.getByLabelText("Product List");
+        const noItemsFoundEl = screen.getByText("No items found");
+
+        expect(productListEl).toBeInTheDocument();
+        expect(noItemsFoundEl).toBeInTheDocument();
     })
-})
+});
