@@ -7,7 +7,7 @@ import Header from "@/layout/Header";
 
 export function MainLayout() {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
+    <Box sx={{ display: "flex", flexDirection: "column", width: "100%"}}>
       <Header />
       <Container maxWidth="lg">
         <Box sx={{ padding: "8px 12px" }}>
