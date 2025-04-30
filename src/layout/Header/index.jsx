@@ -7,6 +7,8 @@ import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import { Typography} from "@mui/material";
 
+import { CartIconButton } from "@/features/cart/components/CartIconButton";
+
 import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
@@ -33,6 +35,7 @@ export default function AppAppBar() {
           <PhoneAndroidIcon />
           <Typography variant="h5">Device Direct</Typography>
         </Box>
+        <CartIconButton />
       </StyledToolbar>
     </Container>
   );

@@ -12,9 +12,9 @@ export function ProductProvider({ children }) {
   const [product, setProduct] = useState(null);
 
   const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarMessage, setSnackarMessage] = useState('');
-  const [selectedColor, setSelectedColor] = useState('');
-  const [selectedStorage, setSelectedStorage] = useState('');
+  const [snackbarMessage, setSnackarMessage] = useState("");
+  const [selectedColor, setSelectedColor] = useState("");
+  const [selectedStorage, setSelectedStorage] = useState("");
 
   useEffect(() => {
     async function fetchProduct() {
@@ -43,22 +43,28 @@ export function ProductProvider({ children }) {
     fetchProduct();
   }, [routeParams.id]);
 
-  async function addToCart() {
+  async function addToCart({ onAddCartItem }) {
     const url = `${import.meta.env.VITE_API_URL}${API_CART}`;
     try {
+      const payload = {
+        id: product.id,
+        colorCode: parseInt(selectedColor),
+        storageCode: parseInt(selectedStorage),
+      };
+
+      const headers = new Headers();
+      headers.append("Content-Type", "application/json");
+
       const response = await fetch(url, {
         method: "POST",
-        body: JSON.stringify({
-          id: product.id,
-          colorCode: parseInt(selectedColor),
-          storageCode: parseInt(selectedStorage),
-        }),
+        headers: headers,
+        body: JSON.stringify(payload),
       });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const result = await response.json();
-      // TODO: SUCCESSFUL MESSAGE
+      if (result.count) onAddCartItem(payload);
     } catch (error) {
       setErrors(error);
       // TODO: ERROR MESSAGE
@@ -87,4 +93,3 @@ export function ProductProvider({ children }) {
     </ProductContext.Provider>
   );
 }
-
