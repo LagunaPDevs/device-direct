@@ -12,7 +12,7 @@ export function ProductFeatures({ product }) {
     displayResolution,
     battery,
     primaryCamera,
-    secondaryCamera,
+    secondaryCmera,
     dimentions,
     weight,
   } = product;
@@ -36,7 +36,7 @@ export function ProductFeatures({ product }) {
       />
       <ProductFeatureItem title="Battery" value={battery} />
       <ProductFeatureItem title="Primary Camera" value={primaryCamera} />
-      <ProductFeatureItem title="Secondary Camera" value={secondaryCamera} />
+      <ProductFeatureItem title="Secondary Camera" value={secondaryCmera} />
       <ProductFeatureItem title="Dimentions" value={dimentions} />
       <ProductFeatureItem title="Weight" value={weight} />
 

@@ -38,7 +38,7 @@ function FiltersButton({ anchorRef, handleOpenClose }) {
         <Button variant="outlined" ref={anchorRef} onClick={handleOpenClose}>
           <Grid container alignItems="center" spacing={1}>
             <FilterAltIcon />
-            <Typography variant="body2">Filters</Typography>
+            <Typography variant="body2" style={{textTransform: "uppercase"}}>Filters</Typography>
           </Grid>
         </Button>
       </Grid>

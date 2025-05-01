@@ -15,6 +15,7 @@ const AnimatedCard = styled(Card)(({ theme }) => ({
   transition: "transform 0.3s ease-in-out",
   "&:hover": {
     transform: "scale(1.05)",
+    backgroundColor: "#fff",
   },
 }));
 
@@ -37,17 +38,25 @@ export function ProductListItem({ product }) {
         component={Button}
         sx={{ display: "flex", alignItems: "center", gap: 2 }}
         aria-label="Product Item"
-        onClick={()=> navigate(`/product-detail/${id}`)}
+        onClick={() => navigate(`/product-detail/${id}`)}
       >
-        <HandledImage src={imgUrl} />
-        <Box>
-          <Typography gutterBottom sx={{ fontWeight: "medium" }}>
-            {brand}
-          </Typography>
-          <Typography variant="body2" sx={{ color: "grey.400" }}>
-            {model}
-          </Typography>
-          <Typography>
+        <Box sx={{ width: "50%" }}>
+          <HandledImage src={imgUrl} />
+        </Box>
+        <Box sx={{ width: "50%" }}>
+          <Box mb={2} sx={{ overflow: "hidden", textOverflow: "ellipsis" }}>
+            <Typography
+              variant="body2"
+              gutterBottom
+              sx={{ fontWeight: "900", textTransform: "uppercase" }}
+            >
+              {brand}
+            </Typography>
+            <Typography variant="h4" sx={{ color: "grey.400" }}>
+              {model}
+            </Typography>
+          </Box>
+          <Typography color="secondary">
             {price ? `${price}€` : "Unavailable for purchase"}
           </Typography>
         </Box>
@@ -64,13 +73,6 @@ function ProductItemWrapper({ children }) {
         component={AnimatedCard}
         spacing={1}
         useFlexGap
-        sx={{
-          color: "inherit",
-          height: "100%",
-          borderColor: "hsla(220, 25%, 25%, 0.3)",
-          backgroundColor: "grey.800",
-          borderRadius: "8px",
-        }}
       >
         {children}
       </Stack>

@@ -17,7 +17,7 @@ export function ProductFeatureItem({ title, value }) {
         <Box sx={{ width: "40%", color: "text.secondary" }}>
           <Typography variant="body2">{title}</Typography>
         </Box>
-        <Typography value="h6">{value}</Typography>
+        <Typography value="h6" textAlign="right">{value}</Typography>
       </Box>
     );
   }

@@ -1,6 +1,6 @@
-import {Grid, Card} from "@mui/material";
+import { Grid, Card } from "@mui/material";
 
-import {HandledImage} from "@/components/HandledImage";
+import { HandledImage } from "@/components/HandledImage";
 
 export function ProductImage({ imgUrl }) {
   return (
@@ -15,6 +15,7 @@ export function ProductImage({ imgUrl }) {
           alignItems: "center",
           justifyContent: "center",
           pointerEvents: "none",
+          backgroundColor: "#fff",
         }}
       >
         <HandledImage src={imgUrl} width="100%" />
