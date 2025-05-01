@@ -1,6 +1,8 @@
 import { createContext, useState, useEffect } from "react";
 import { useParams } from "react-router";
 
+import { useSnackbar } from "notistack";
+
 import { useCachedFetch } from "@/hooks/useCachedFetch";
 
 import { API_PRODUCT, API_CART } from "@/constants/url-constants";
@@ -12,7 +14,6 @@ export const ProductContext = createContext();
 
 export function ProductProvider({ children }) {
   const routeParams = useParams();
-  const [cartErrors, setCartErrors] = useState(null);
   const [isCartLoading, setIsCartLoading] = useState(false);
 
   // variant selection
@@ -31,6 +32,9 @@ export function ProductProvider({ children }) {
     setDefaultVariant(data);
   }, [data]);
 
+  // handle add item to cart
+  const { enqueueSnackbar } = useSnackbar();
+
   async function addToCart({ onAddCartItem }) {
     setIsCartLoading(true);
     const url = `${import.meta.env.VITE_API_URL}${API_CART}`;
@@ -46,16 +50,19 @@ export function ProductProvider({ children }) {
 
       const response = await fetch(url, {
         method: "POST",
-        headers: headers,
+        headers,
         body: JSON.stringify(payload),
       });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const result = await response.json();
-      if (result.count) onAddCartItem(payload);
+      if (result.count) {
+        onAddCartItem(payload);
+        enqueueSnackbar("Item successfully added to cart!");
+      }
     } catch (error) {
-      setCartErrors(error.message);
+      enqueueSnackbar(error.message);
     } finally {
       setIsCartLoading(false);
     }
@@ -72,7 +79,6 @@ export function ProductProvider({ children }) {
     <ProductContext.Provider
       value={{
         addToCart,
-        cartErrors,
         errors: error,
         isLoading,
         isCartLoading,
