@@ -34,5 +34,5 @@ export function HandledImage({
       </Box>
     );
 
-  return <img src={src} sx={{ width, height, objectFit: "cover" }} />;
+  return <img src={src} width={width} height={height} sx={{  objectFit: "cover" }} />;
 }

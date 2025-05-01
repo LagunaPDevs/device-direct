@@ -18,7 +18,7 @@ export function ProductImage({ imgUrl }) {
           backgroundColor: "#fff",
         }}
       >
-        <HandledImage src={imgUrl} width="100%" />
+        <HandledImage src={imgUrl} width="100%" height="auto" />
       </Card>
     </Grid>
   );

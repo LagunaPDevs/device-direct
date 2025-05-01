@@ -40,10 +40,10 @@ export function ProductListItem({ product }) {
         aria-label="Product Item"
         onClick={() => navigate(`/product-detail/${id}`)}
       >
-        <Box sx={{ width: "50%" }}>
-          <HandledImage src={imgUrl} />
+        <Box sx={{display: "flex",  width: "50%" }}>
+          <HandledImage src={imgUrl} width="100%" height="auto" />
         </Box>
-        <Box sx={{ width: "50%" }}>
+        <Box sx={{  width: "50%" }}>
           <Box mb={2} sx={{ overflow: "hidden", textOverflow: "ellipsis" }}>
             <Typography
               variant="body2"
@@ -67,7 +67,7 @@ export function ProductListItem({ product }) {
 
 function ProductItemWrapper({ children }) {
   return (
-    <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+    <Grid size={{ xs: 12, sm: 6, md: 3 }}>
       <Stack
         direction="column"
         component={AnimatedCard}

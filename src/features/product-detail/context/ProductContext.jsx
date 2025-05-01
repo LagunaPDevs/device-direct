@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { useParams } from "react-router";
 
 import { useCachedFetch } from "@/hooks/useCachedFetch";
@@ -26,6 +26,10 @@ export function ProductProvider({ children }) {
       method: "GET",
     },
   });
+
+  useEffect(() => {
+    setDefaultVariant(data);
+  }, [data]);
 
   async function addToCart({ onAddCartItem }) {
     setIsCartLoading(true);
@@ -56,6 +60,13 @@ export function ProductProvider({ children }) {
       setIsCartLoading(false);
     }
   }
+
+  const setDefaultVariant = (data) => {
+    if (data?.options?.colors?.length === 1)
+      setSelectedColor(data.options.colors[0].code);
+    if (data?.options?.storages?.length === 1)
+      setSelectedStorage(data.options.storages[0].code);
+  };
 
   return (
     <ProductContext.Provider
