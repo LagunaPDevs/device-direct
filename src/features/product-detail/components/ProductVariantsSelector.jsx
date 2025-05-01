@@ -11,6 +11,7 @@ import { ProductStorageVariants } from "./ProductStorageVariants";
 const AnimatedButton = styled(Button)(({ theme }) => ({
   textTransform: "uppercase",
   backgroundColor: theme.palette.primary,
+  fontWeight: "bold",
   transition: "transform 0.3s ease-in-out",
   "&:hover": {
     transform: "scale(1.05)",

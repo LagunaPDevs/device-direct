@@ -16,7 +16,7 @@ export function ProductCard({ product }) {
   const { model, imgUrl } = product;
 
   return (
-    <Container id="Product-Card" sx={{ py: { xs: 8, sm: 16 } }}>
+    <Container id="Product-Card" sx={{ py: { xs: 8, sm: 8 } }}>
       <Box sx={{ width: { sm: "100%", md: "60%" } }} aria-label="Product Card">
         <Typography
           component="h2"

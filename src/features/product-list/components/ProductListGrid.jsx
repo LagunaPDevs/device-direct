@@ -15,7 +15,7 @@ export default function ProductListGrid({ products }) {
       id="product-list"
       aria-label="Product List"
       sx={{
-        pt: { xs: 4, sm: 12 },
+        pt: { xs: 4, sm: 8 },
         pb: { xs: 8, sm: 16 },
         bgcolor: "grey.900",
       }}

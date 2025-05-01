@@ -1,9 +1,8 @@
 import * as React from "react";
 
 import Link from "@mui/material/Link";
-import MuiBreadcrumbs from "@mui/material/Breadcrumbs";
+import { Breadcrumbs as MuiBreadcrumbs } from "@mui/material";
 import { Typography } from "@mui/material";
-
 
 export function Breadcrumbs(props) {
   const { links } = props;

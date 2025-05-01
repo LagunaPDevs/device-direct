@@ -25,7 +25,6 @@ function PageContent() {
     <Box>
       <Box
         sx={{
-          pb: 2,
           display: { xs: "flex" },
           flexDirection: "row",
           gap: 1,

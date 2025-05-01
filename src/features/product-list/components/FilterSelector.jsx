@@ -16,18 +16,14 @@ export function FilterSelector() {
 
   return (
     <Grid container>
-      <Grid container direction="column" gap={1} alignItems="center">
-        <FiltersButton {...{ anchorRef, handleOpenClose }} />
-        <SelectedFilter />
-      </Grid>
+      <FiltersButton {...{ anchorRef, handleOpenClose }} />
       <FiltersPopover {...{ anchorRef, handleOpenClose, open }} />
     </Grid>
   );
 }
 
 function SelectedFilter() {
-  const { selectedFilter, searchInput } = useGetProducts();
-  if (searchInput === "") return;
+  const { selectedFilter } = useGetProducts();
   return <Chip color="primary" label={selectedFilter} />;
 }
 
@@ -38,7 +34,13 @@ function FiltersButton({ anchorRef, handleOpenClose }) {
         <Button variant="outlined" ref={anchorRef} onClick={handleOpenClose}>
           <Grid container alignItems="center" spacing={1}>
             <FilterAltIcon />
-            <Typography variant="body2" style={{textTransform: "uppercase"}}>Filters</Typography>
+            <Typography
+              variant="body2"
+              style={{ textTransform: "uppercase", fontWeight: "bold" }}
+            >
+              Filter by:
+            </Typography>
+            <SelectedFilter />
           </Grid>
         </Button>
       </Grid>

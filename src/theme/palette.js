@@ -110,7 +110,7 @@ export function Palette(
     },
     divider: "#bfbfbf",
     background: {
-      paper: "grey.800",
+      paper: "#212121",
       default: "#212121",
     },
   };
