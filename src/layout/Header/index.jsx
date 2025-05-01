@@ -8,7 +8,7 @@ import Container from "@mui/material/Container";
 
 import { CartIconButton } from "@/features/cart/components/CartIconButton";
 
-import DeviceDirectLogo from "@/assets/device-direct-logo.png";
+import DeviceDirectLogo from "@/assets/device-direct-logo.webp";
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
