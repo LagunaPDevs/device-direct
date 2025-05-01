@@ -8,7 +8,7 @@ import { ProductColorVariants } from "./ProductColorVariants";
 import { ProductStorageVariants } from "./ProductStorageVariants";
 
 export function ProductVariantsSelector() {
-  const { onAddCartItem } = useCart();
+  const { onAddCartItem, isCartLoading } = useCart();
   const { selectedColor, selectedStorage, addToCart } = useGetProductById();
 
   return (
@@ -18,7 +18,7 @@ export function ProductVariantsSelector() {
 
       <Button
         fullWidth
-        disabled={!selectedColor || !selectedStorage}
+        disabled={!selectedColor || !selectedStorage || isCartLoading}
         variant="contained"
         onClick={() => addToCart({onAddCartItem})}
       >

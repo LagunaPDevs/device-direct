@@ -2,12 +2,12 @@ import { createContext, useEffect, useState } from "react";
 
 import useLocalStorage from "@/hooks/useLocalStorage";
 
-// Create the context
-export const CartContext = createContext();
-
 const initialState= {
   items: []
 };
+
+// Create the context
+export const CartContext = createContext();
 
 // Create the provider component
 export function CartProvider({ children }) {

@@ -1,53 +1,38 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { useParams } from "react-router";
 
+import { useCachedFetch } from "@/hooks/useCachedFetch";
+
 import { API_PRODUCT, API_CART } from "@/constants/url-constants";
+
+const FETCH_PRODUCT_ENDPOINT = ({ id }) =>
+  `${import.meta.env.VITE_API_URL}${API_PRODUCT}/${id}`;
 
 export const ProductContext = createContext();
 
 export function ProductProvider({ children }) {
   const routeParams = useParams();
-  const [errors, setErrors] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [product, setProduct] = useState(null);
+  const [cartErrors, setCartErrors] = useState(null);
+  const [isCartLoading, setIsCartLoading] = useState(false);
 
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarMessage, setSnackarMessage] = useState("");
+  // variant selection
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedStorage, setSelectedStorage] = useState("");
 
-  useEffect(() => {
-    async function fetchProduct() {
-      if (!routeParams.id) {
-        setIsLoading(false);
-        return;
-      }
-      const url = `${import.meta.env.VITE_API_URL}${API_PRODUCT}/${
-        routeParams.id
-      }`;
-      try {
-        const response = await fetch(url, {
-          method: "GET",
-        });
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const result = await response.json();
-        setProduct(result);
-      } catch (error) {
-        setErrors(error);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    fetchProduct();
-  }, [routeParams.id]);
+  // current product info fetching
+  const { data, isLoading, error } = useCachedFetch({
+    url: FETCH_PRODUCT_ENDPOINT({ id: routeParams.id }),
+    fetchOptions: {
+      method: "GET",
+    },
+  });
 
   async function addToCart({ onAddCartItem }) {
+    setIsCartLoading(true);
     const url = `${import.meta.env.VITE_API_URL}${API_CART}`;
     try {
       const payload = {
-        id: product.id,
+        id: data.id,
         colorCode: parseInt(selectedColor),
         storageCode: parseInt(selectedStorage),
       };
@@ -66,27 +51,25 @@ export function ProductProvider({ children }) {
       const result = await response.json();
       if (result.count) onAddCartItem(payload);
     } catch (error) {
-      setErrors(error);
-      // TODO: ERROR MESSAGE
+      setCartErrors(error.message);
     } finally {
-      setIsLoading(false);
+      setIsCartLoading(false);
     }
   }
 
   return (
     <ProductContext.Provider
       value={{
-        errors,
-        isLoading,
-        product,
         addToCart,
+        cartErrors,
+        errors: error,
+        isLoading,
+        isCartLoading,
+        product: data,
         selectedStorage,
         selectedColor,
         setSelectedColor,
         setSelectedStorage,
-        snackbarOpen,
-        snackbarMessage,
-        setSnackarMessage,
       }}
     >
       {children}

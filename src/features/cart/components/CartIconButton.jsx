@@ -36,7 +36,7 @@ export function CartIconButton() {
           alignItems: 'center',
           fontSize: '0.8rem'   }}
       >
-        {cartItems.length + 1}
+        {cartItems.length}
       </Box>}
     </Stack>
   );
