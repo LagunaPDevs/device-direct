@@ -10,7 +10,7 @@ import { CartIconButton } from "@/features/cart/components/CartIconButton";
 
 import DeviceDirectLogo from "@/assets/device-direct-logo.webp";
 
-const StyledToolbar = styled(Toolbar)(({ theme }) => ({
+const StyledToolbar = styled(Toolbar)(() => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",

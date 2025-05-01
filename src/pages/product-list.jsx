@@ -17,7 +17,7 @@ export function ProductListPage() {
 }
 
 function PageContent() {
-  const { errors, isLoading, products } = useGetProducts();
+  const {isLoading, products } = useGetProducts();
 
   if (isLoading) return <CircularProgress />;
 

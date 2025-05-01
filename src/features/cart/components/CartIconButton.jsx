@@ -4,7 +4,7 @@ import { useCart } from "@/features/cart/hooks/useCart";
 
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
-const CartNumberItemsBox = styled(Box)(({ theme }) => ({
+const CartNumberItemsBox = styled(Box)(() => ({
   position: "absolute",
   top: -10,
   right: -10,

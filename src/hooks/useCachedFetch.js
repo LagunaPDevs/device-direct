@@ -28,8 +28,7 @@ export function useCachedFetch({ url, fetchOptions = {} }) {
       const jsonData = await response.json();
       saveAndStoreResult(jsonData);
     } catch (err) {
-      setError(err.message);
-      enqueueSnackbar(err.message);
+      handleError(err);
     } finally {
       setIsLoading(false);
     }
@@ -58,6 +57,11 @@ export function useCachedFetch({ url, fetchOptions = {} }) {
       fetchData();
     }
   };
+
+  const handleError = (err) =>{
+    setError(err.message);
+      enqueueSnackbar(err.message);
+  }
 
   return { data, error, isLoading, revalidate: fetchData };
 }

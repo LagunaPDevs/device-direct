@@ -20,6 +20,8 @@ const AnimatedCard = styled(Card)(({ theme }) => ({
 }));
 
 export function ProductListItem({ product }) {
+  const navigate = useNavigate();
+  
   if (!product) {
     return (
       <ProductItemWrapper>
@@ -28,7 +30,6 @@ export function ProductListItem({ product }) {
     );
   }
 
-  const navigate = useNavigate();
   const { id, brand, model, price, imgUrl } = product;
 
   return (
