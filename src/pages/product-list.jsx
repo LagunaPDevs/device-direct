@@ -32,6 +32,7 @@ function PageContent() {
           width: "100%",
           overflow: "auto",
           justifyContent: "space-between",
+          alignItems: "center"
         }}
       >
         <Breadcrumbs />

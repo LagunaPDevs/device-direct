@@ -1,6 +1,6 @@
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
-import { useGetProductById } from "../hooks/useGetProductById";
+import { useGetProductById } from "@/features/product-detail/hooks/useGetProductById";
 
 export function ProductStorageVariants() {
   const { product, selectedStorage, setSelectedStorage } = useGetProductById();

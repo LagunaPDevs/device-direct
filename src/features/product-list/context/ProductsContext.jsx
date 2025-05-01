@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect,  useState } from "react";
 
 import { useCachedFetch } from "@/hooks/useCachedFetch";
 
@@ -20,6 +20,8 @@ export function ProductsProvider({ children }) {
   const [products, setProducts] = useState(null);
   const [searchInput, setSearchInput] = useState("");
 
+  const [selectedFilter, setSelectedFilter] = useState("model");
+
   // products list fetching
   const { data, isLoading, error } = useCachedFetch({
     url: FETCH_PRODUCTS_ENDPOINT,
@@ -34,8 +36,7 @@ export function ProductsProvider({ children }) {
   useEffect(() => {
     const productResult = products?.filter(
       (product) =>
-        product.model.toLowerCase().includes(searchInput.toLowerCase()) ||
-        product.brand.toLowerCase().includes(searchInput.toLowerCase())
+        product[selectedFilter].toLowerCase().includes(searchInput.toLowerCase())
     );
     setProducts(productResult);
     if (searchInput === "") setProducts(productsCopy);
@@ -48,6 +49,8 @@ export function ProductsProvider({ children }) {
         isLoading,
         products,
         searchInput,
+        selectedFilter,
+        setSelectedFilter,
         setSearchInput,
       }}
     >
