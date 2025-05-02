@@ -1,4 +1,4 @@
-import { Box, CircularProgress } from "@mui/material";
+import { Box } from "@mui/material";
 
 import { Breadcrumbs } from "@/components/@extended/Breadcrumbs";
 
@@ -7,6 +7,7 @@ import { useGetProducts } from "@/features/product-list/hooks/useGetProducts";
 import { ProductsProvider } from "@/features/product-list/context/ProductsContext";
 import ProductListGrid from "@/features/product-list/components/ProductListGrid";
 import { SearchProducts } from "@/features/product-list/components/SearchProducts";
+import { ProductListSkeleton } from "@/features/product-list/components/ProductListSkeleton";
 
 export function ProductListPage() { 
   return (
@@ -19,7 +20,7 @@ export function ProductListPage() {
 function PageContent() {
   const {isLoading, products } = useGetProducts();
 
-  if (isLoading) return <CircularProgress />;
+  if (isLoading) return <ProductListSkeleton />;
 
   return (
     <Box>
